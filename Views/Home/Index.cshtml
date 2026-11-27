@@ -1,0 +1,85 @@
+@model IEnumerable<Destino>
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<section class="hero">
+    <div class="aurora-band aurora-band-1"></div>
+    <div class="aurora-band aurora-band-2"></div>
+    <div class="container position-relative text-center py-5">
+        <span class="badge badge-aurora mb-3">Temporada de auroras: septiembre a marzo</span>
+        <h1 class="display-3 fw-bold">El mundo te <span class="text-aurora">espera</span></h1>
+        <p class="lead mx-auto hero-text">
+            Diseñamos viajes a Islandia, Noruega y Finlandia para que veas uno de los espectáculos
+            más impresionantes del planeta, con alojamiento, tours nocturnos y asesoría completa.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+            <a class="btn btn-aurora btn-lg" asp-controller="Cotizacion" asp-action="Crear">Cotizar mi viaje</a>
+            <a class="btn btn-outline-light btn-lg" asp-controller="Destinos" asp-action="Index">Ver destinos</a>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <div class="row g-4 text-center">
+        <div class="col-md-4 reveal">
+            <div class="feature-box h-100">
+                <div class="feature-icon">🌌</div>
+                <h2 class="h5">Tours nocturnos</h2>
+                <p class="text-secondary mb-0">Guías locales que siguen el pronóstico para llevarte donde el cielo está más despejado.</p>
+            </div>
+        </div>
+        <div class="col-md-4 reveal">
+            <div class="feature-box h-100">
+                <div class="feature-icon">🏨</div>
+                <h2 class="h5">Alojamiento a tu medida</h2>
+                <p class="text-secondary mb-0">Desde hoteles estándar hasta cabañas e iglús de cristal para ver el cielo desde la cama.</p>
+            </div>
+        </div>
+        <div class="col-md-4 reveal">
+            <div class="feature-box h-100">
+                <div class="feature-icon">💬</div>
+                <h2 class="h5">Cotización inmediata</h2>
+                <p class="text-secondary mb-0">Llena el formulario y obtén al instante el desglose del precio de tu viaje.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-4">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">Destinos principales</h2>
+            <p class="text-secondary mb-0">Tres países, tres formas de vivir las auroras.</p>
+        </div>
+        <a class="link-aurora d-none d-md-inline" asp-controller="Destinos" asp-action="Index">Ver todos →</a>
+    </div>
+
+    <div class="row g-4">
+        @foreach (var destino in Model)
+        {
+            <div class="col-md-4 reveal">
+                <partial name="_TarjetaDestino" model="destino" />
+            </div>
+        }
+    </div>
+</section>
+
+<section class="container py-5">
+    <h2 class="fw-bold mb-4">Cómo funciona</h2>
+    <div class="row g-4">
+        <div class="col-md-4 reveal">
+            <div class="step-box"><span class="step-num">1</span><h3 class="h6 mt-3">Elige tu destino</h3>
+                <p class="text-secondary mb-0">Explora Islandia, Noruega o Finlandia y mira sus mejores lugares para ver auroras.</p></div>
+        </div>
+        <div class="col-md-4 reveal">
+            <div class="step-box"><span class="step-num">2</span><h3 class="h6 mt-3">Solicita tu cotización</h3>
+                <p class="text-secondary mb-0">Indica fechas, viajeros y tipo de alojamiento en nuestro formulario.</p></div>
+        </div>
+        <div class="col-md-4 reveal">
+            <div class="step-box"><span class="step-num">3</span><h3 class="h6 mt-3">Recibe el desglose</h3>
+                <p class="text-secondary mb-0">Calculamos el valor total, con recargos de temporada y descuentos para grupos.</p></div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,19 @@
+@model Destino
+
+<div class="card card-destino h-100">
+    <div class="card-img-top destino-cover @Model.ClaseTema">
+        <img class="destino-imagen" src="@Model.ImagenUrl" alt="@Model.ImagenAlt" loading="lazy" decoding="async" />
+        <a class="destino-credito" href="@Model.ImagenFuenteUrl" target="_blank" rel="noopener noreferrer">
+            Foto: @Model.ImagenAutor · @Model.ImagenLicencia
+        </a>
+    </div>
+    <div class="card-body d-flex flex-column">
+        <h3 class="h5 card-title mb-1">@Model.Nombre</h3>
+        <p class="text-secondary small mb-2">Base: @Model.CiudadBase · @Model.MejorEpoca</p>
+        <p class="card-text flex-grow-1">@Model.Resumen</p>
+        <div class="d-flex gap-2 mt-2">
+            <a class="btn btn-outline-light btn-sm" asp-controller="Destinos" asp-action="Detalle" asp-route-id="@Model.Id">Ver más</a>
+            <a class="btn btn-aurora btn-sm" asp-controller="Cotizacion" asp-action="Crear" asp-route-destinoId="@Model.Id">Cotizar</a>
+        </div>
+    </div>
+</div>
