@@ -1,0 +1,17 @@
+## Compilación
+bin/
+obj/
+publish/
+
+## Visual Studio / VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+
+## Archivos del sistema
+.DS_Store
+Thumbs.db
+
+## Logs
+*.log
