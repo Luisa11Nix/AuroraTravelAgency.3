@@ -17,3 +17,5 @@ Thumbs.db
 ## Logs
 *.log
 
+## Paquete de publicación
+aurora.zip
