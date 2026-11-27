@@ -1,0 +1,80 @@
+@model Cotizacion
+@using System.Globalization
+@{
+    ViewData["Title"] = "Tu cotización";
+    string Usd(decimal valor) => "US$ " + valor.ToString("N2", CultureInfo.InvariantCulture);
+}
+
+<div class="container py-5" style="max-width: 820px;">
+    <div class="text-center mb-4">
+        <div class="display-4">✨</div>
+        <h1 class="fw-bold">¡Gracias, @Model.Nombre!</h1>
+        <p class="text-secondary">Esta es la cotización estimada para tu viaje a <strong>@Model.DestinoNombre</strong>.</p>
+    </div>
+
+    <div class="feature-box mb-4">
+        <h2 class="h5 mb-3">Resumen del viaje</h2>
+        <div class="row g-2">
+            <div class="col-sm-6"><strong>Destino:</strong> @Model.DestinoNombre</div>
+            <div class="col-sm-6"><strong>Viajeros:</strong> @Model.NumeroViajeros</div>
+            <div class="col-sm-6"><strong>Salida:</strong> @Model.FechaViaje.ToString("dd/MM/yyyy")</div>
+            <div class="col-sm-6"><strong>Regreso:</strong> @Model.FechaRegreso.ToString("dd/MM/yyyy") (@Model.Noches noches)</div>
+            <div class="col-12"><strong>Alojamiento:</strong> @Model.Alojamiento.NombreVisible()</div>
+            <div class="col-12"><strong>Correo de contacto:</strong> @Model.Correo</div>
+            @if (!string.IsNullOrWhiteSpace(Model.Comentarios))
+            {
+                <div class="col-12"><strong>Comentarios:</strong> @Model.Comentarios</div>
+            }
+        </div>
+    </div>
+
+    <div class="feature-box mb-4">
+        <h2 class="h5 mb-3">Desglose del precio</h2>
+        <table class="table table-borderless align-middle mb-0">
+            <tbody>
+                <tr>
+                    <td>Alojamiento y servicios (@Model.Noches noches × @Model.NumeroViajeros viajeros)</td>
+                    <td class="text-end">@Usd(Model.CostoAlojamiento)</td>
+                </tr>
+                @if (Model.EnTemporadaAuroras)
+                {
+                    <tr>
+                        <td>Recargo temporada alta de auroras (+20 %)</td>
+                        <td class="text-end">@Usd(Model.RecargoTemporada)</td>
+                    </tr>
+                }
+                @if (Model.IncluyeTourAuroras)
+                {
+                    <tr>
+                        <td>Tour nocturno de auroras</td>
+                        <td class="text-end">@Usd(Model.CostoTour)</td>
+                    </tr>
+                }
+                @if (Model.DescuentoGrupo > 0)
+                {
+                    <tr class="text-success">
+                        <td>Descuento por grupo (−10 %)</td>
+                        <td class="text-end">− @Usd(Model.DescuentoGrupo)</td>
+                    </tr>
+                }
+                <tr class="border-top fs-5 fw-bold">
+                    <td>Total estimado</td>
+                    <td class="text-end text-aurora">@Usd(Model.Total)</td>
+                </tr>
+                <tr class="text-secondary small">
+                    <td>Aproximado por persona</td>
+                    <td class="text-end">@Usd(Model.TotalPorPersona)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="text-secondary small">
+        Cotización generada el @Model.FechaSolicitud.ToString("dd/MM/yyyy HH:mm"). Los valores son estimados y
+        no garantizan la aparición de auroras boreales.
+    </p>
+
+    <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-aurora" asp-controller="Cotizacion" asp-action="Crear">Hacer otra cotización</a>
+    </div>
+</div>
