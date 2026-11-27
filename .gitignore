@@ -8,6 +8,7 @@ publish/
 .vscode/
 *.user
 *.suo
+publicacion/
 
 ## Archivos del sistema
 .DS_Store
@@ -15,3 +16,4 @@ Thumbs.db
 
 ## Logs
 *.log
+
