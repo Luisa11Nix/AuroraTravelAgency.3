@@ -1,0 +1,18 @@
+@model IEnumerable<Destino>
+@{
+    ViewData["Title"] = "Destinos";
+}
+
+<div class="container py-5">
+    <h1 class="fw-bold">Nuestros destinos</h1>
+    <p class="text-secondary mb-4">Elige dónde quieres vivir tu noche de auroras.</p>
+
+    <div class="row g-4">
+        @foreach (var destino in Model)
+        {
+            <div class="col-md-6 col-lg-4">
+                <partial name="_TarjetaDestino" model="destino" />
+            </div>
+        }
+    </div>
+</div>

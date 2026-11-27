@@ -1,0 +1,55 @@
+@model Destino
+@{
+    ViewData["Title"] = Model.Nombre;
+}
+
+<div class="destino-header @Model.ClaseTema">
+    <div class="container py-5 text-center">
+        <div class="display-1">@Model.Emoji</div>
+        <h1 class="display-4 fw-bold">@Model.Nombre</h1>
+        <p class="lead mb-0">@Model.Resumen</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-5">
+        <div class="col-lg-8">
+            <h2 class="h4">Sobre el destino</h2>
+            <p>@Model.Descripcion</p>
+
+            <h2 class="h4 mt-4">Mejores lugares para ver auroras</h2>
+            <ul class="list-aurora">
+                @foreach (var lugar in Model.LugaresAuroras)
+                {
+                    <li>@lugar</li>
+                }
+            </ul>
+
+            <h2 class="h4 mt-4">Actividades</h2>
+            <ul class="list-aurora">
+                @foreach (var actividad in Model.Actividades)
+                {
+                    <li>@actividad</li>
+                }
+            </ul>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="feature-box">
+                <h2 class="h5">Datos del viaje</h2>
+                <dl class="mb-3">
+                    <dt>Ciudad base</dt>
+                    <dd>@Model.CiudadBase</dd>
+                    <dt>Mejor época</dt>
+                    <dd>@Model.MejorEpoca</dd>
+                    <dt>Desde</dt>
+                    <dd>US$ @Model.PrecioPorPersonaPorNoche.ToString("N0", System.Globalization.CultureInfo.InvariantCulture) por persona / noche</dd>
+                </dl>
+                <a class="btn btn-aurora w-100" asp-controller="Cotizacion" asp-action="Crear" asp-route-destinoId="@Model.Id">
+                    Cotizar viaje a @Model.Nombre
+                </a>
+                <a class="btn btn-outline-light w-100 mt-2" asp-controller="Destinos" asp-action="Index">Volver a destinos</a>
+            </div>
+        </div>
+    </div>
+</div>
