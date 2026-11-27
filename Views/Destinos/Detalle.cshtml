@@ -5,9 +5,12 @@
 
 <div class="destino-header @Model.ClaseTema">
     <div class="container py-5 text-center">
-        <div class="display-1">@Model.Emoji</div>
+        <img src="@Model.ImagenUrl" alt="@Model.ImagenAlt" class="img-fluid rounded mb-3" style="max-height: 280px;" />
         <h1 class="display-4 fw-bold">@Model.Nombre</h1>
-        <p class="lead mb-0">@Model.Resumen</p>
+        <p class="lead mb-1">@Model.Resumen</p>
+        <small class="text-secondary">
+            Foto: <a class="link-aurora" href="@Model.ImagenFuenteUrl" target="_blank" rel="noopener noreferrer">@Model.ImagenAutor · @Model.ImagenLicencia</a>
+        </small>
     </div>
 </div>
 
